@@ -10,10 +10,10 @@ design and can be applied in other areas.
 
 Current features:
 
-    Controllable over IRC or an interactive shell
-    Plugin infrastructure (allows reload during runtime)
-    User authentication
-    LDAP plugin for "group auto-op" and object monitoring
-    cat2irc plugin allows simple messaging from scripts (see 
+    * Controllable over IRC or an interactive shell
+    * Plugin infrastructure (allows reload during runtime)
+    * User authentication
+    * LDAP plugin for "group auto-op" and object monitoring
+    * cat2irc plugin allows simple messaging from scripts (see 
 	Syslogfilter http://home.hadiko.de/~anyc/syslogfilter.html )
 
