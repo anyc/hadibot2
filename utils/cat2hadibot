@@ -1,0 +1,37 @@
+#! /bin/bash
+#
+# Mario Kicherer (http://empanyc.net)
+#
+# Requires: socat or openssl
+#
+# Usage: cat2hadibot mydomain.com:1685 mypassword mygroup [nossl]
+#
+
+trap shutdown INT
+
+shutdown() {
+	echo "exit" >&7
+	exec 7>&-
+	exit 0
+}
+
+if [ "$3" == "" ]; then
+	group="$(hostname)"
+else
+	group="$3"
+fi
+
+if [ "$4" == "nossl" ]; then
+        exec 7> >(/usr/bin/socat - TCP4:${1})
+else
+        exec 7> >(/usr/bin/openssl s_client -tls1 -quiet -connect ${1})
+fi
+
+echo "password:$2" >&7
+echo "" >&7
+
+while read msg; do
+	echo "${group}:$msg" >&7
+done;
+
+shutdown
